@@ -17,7 +17,6 @@ class DoctorsBloc extends Bloc<DoctorsEvent, DoctorsStates> {
       yield DoctorsLoadingState();
       try {
         List<DoctorsModel> posts = await repository.getDoctors();
-        print("doctors posts");
 
         yield DoctorsLoadedState(list: posts);
       } catch (e) {

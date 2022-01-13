@@ -15,18 +15,16 @@ class DoctorsLoadingState extends DoctorsStates {
 
 // ignore: must_be_immutable
 class DoctorsLoadedState extends DoctorsStates {
-  List<DoctorsModel> list;
+  List<DoctorsModel> list = [];
 
   DoctorsLoadedState({required this.list});
   @override
   List<Object> get props => [list];
 }
 
-
 class DoctorsErrorState extends DoctorsStates {
   final String message;
   DoctorsErrorState({required this.message});
   @override
-
   List<Object> get props => [message];
 }

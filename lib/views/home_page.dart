@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/data_bloc.dart';
@@ -5,14 +7,11 @@ import 'package:news_app/bloc/data_event.dart';
 import 'package:news_app/bloc/data_state.dart';
 import 'package:news_app/models/data_model.dart';
 
-
-
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     DoctorsInitialState state = DoctorsInitialState();
 
     return BlocProvider(
@@ -30,15 +29,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   void initState() {
     super.initState();
     newsBloc = BlocProvider.of<DoctorsBloc>(context);
     newsBloc!.add(FetchPostEvent());
   }
-
 
   DoctorsBloc? newsBloc;
 
@@ -108,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+              // ignore: deprecated_member_use
               child: RaisedButton(
                 color: const Color(0xFFfcb917),
                 elevation: 0,
@@ -162,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
             } else if (state is DoctorsLoadedState) {
               return _savedList(state.list);
             } else if (state is DoctorsErrorState) {
-              return buildErrorUi("Error");
+              return buildErrorUi("Error ${state.message}");
             } else {
               return buildErrorUi("Error");
             }
